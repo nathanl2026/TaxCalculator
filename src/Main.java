@@ -15,7 +15,7 @@ public class Main {
     //Save all user data to a .csv  file (input data + tax amount)
     //Repeat the process until the user requests to exit the program.
 
-    public static int main(String[] args) {
+    public static void main(String[] args) {
 
 
         int age = 0;
@@ -139,14 +139,14 @@ public class Main {
                             while (true) {
                                 if (children >= 1 && children <= 9) {
                                     allowanceThree = children * 130000;
-                                    return allowanceThree;
+                                    break;
                                 } else {
                                     System.out.println("Invalid input. Enter a number from 1-9.");
                                     children = scanner.nextInt();
                                 }
                             }
                         } else if (answer.equals("no")) {
-                            return 0;
+                            break;
                         } else {
                             System.out.println("Invalid input. Please answer Yes or No.");
                             answer = scanner.next();
@@ -170,22 +170,23 @@ public class Main {
                                     children = scanner.nextInt();
                                     while (true) {
                                         if (children >= 1 && children <= 9) {
-                                            allowanceThree = children * 130000;
-                                            return allowanceThree + 264000;
+                                            allowanceThree = children * 130000 + 264000;
+                                            break;
                                         } else {
                                             System.out.println("Invalid input. Enter a number from 1-9.");
                                             children = scanner.nextInt();
                                         }
                                     }
                                 } else if (answer.equals("no")) {
-                                    return 264000;
+                                    allowanceThree = 264000;
+                                    break;
                                 } else {
                                     System.out.println("Invalid input. Please answer Yes or No.");
                                     answer = scanner.next();
                                 }
                             }
                         } else if (allowanceTwoAns.equals("no")) {
-                            return 0;
+                            break;
                         } else {
                             System.out.println("Invalid input. Please answer Yes or No.");
                             allowanceTwoAns = scanner.next().toLowerCase();
@@ -219,33 +220,27 @@ public class Main {
 
             int totalDeductions = deductionOne + deductionTwo + deductionThree + deductionFour + deductionFive;
             int totalAllowances = allowanceOne + allowanceThree + allowanceFour;
-            double taxPay = getTaxPay(nChargeableIncome, totalDeductions, totalAllowances);
+            double standardTax = nChargeableIncome - totalDeductions - totalAllowances;
+
+            double taxPay = 0;
+            if (standardTax - 200000 <= 0) {
+                if (0 <= standardTax && standardTax <= 50000) {
+                    taxPay = standardTax * 0.02;
+                } else if (50001 <= standardTax && standardTax <= 100000) {
+                    taxPay = standardTax * 0.06;
+                } else if (100001 <= standardTax && standardTax <= 150000) {
+                    taxPay = standardTax * 0.1;
+                } else if (150001 <= standardTax && standardTax <= 200000) {
+                    taxPay = standardTax * 0.14;
+                }
+            } else {
+                taxPay = (standardTax - 200000) * 0.17 + 16000;
+            }
             System.out.println("You're tax payment is HKD" + taxPay + ".");
 
             System.out.println("Enter 'exit' to exit to code. Enter any other input to keep calculating your tax payment.");
             contOrEnd = scanner.nextLine();
         }
         System.out.println("Thanks for using Nathan's Hong Kong Tax Rate Calculator!");
-        return age;
-    }
-
-    private static double getTaxPay(int nChargeableIncome, int totalDeductions, int totalAllowances) {
-        double standardTax = nChargeableIncome - totalDeductions - totalAllowances;
-
-        double taxPay = 0;
-        if (standardTax - 200000 <= 0) {
-            if (0 <= standardTax && standardTax <= 50000) {
-                taxPay = standardTax * 0.02;
-            } else if (50001 <= standardTax && standardTax <= 100000) {
-                taxPay = standardTax * 0.06;
-            } else if (100001 <= standardTax && standardTax <= 150000) {
-                taxPay = standardTax * 0.1;
-            } else if (150001 <= standardTax && standardTax <= 200000) {
-                taxPay = standardTax * 0.14;
-            }
-        } else {
-            taxPay = (standardTax - 200000) * 0.17 + 16000;
-        }
-        return taxPay;
     }
 }
