@@ -12,7 +12,7 @@ public class Main {
     //Allowances
     //Compute the tax due based on the progressive rate
     //Display the tax due (tax is never negative)
-    //Save all user data to a .csv file (input data + tax amount)
+    //Save all user data to a .csv  file (input data + tax amount)
     //Repeat the process until the user requests to exit the program.
 
     public static int main(String[] args) {
