@@ -4,17 +4,6 @@ import java.util.Scanner;
 // then press Enter. You can now see whitespace characters in your code.
 public class Main {
 
-    //Display a home screen with a message explaining the program.
-    //Prompt user for input data:
-    //Tax Payer details (FName, LName and age)
-    //Income
-    //        Deductions
-    //Allowances
-    //Compute the tax due based on the progressive rate
-    //Display the tax due (tax is never negative)
-    //Save all user data to a .csv  file (input data + tax amount)
-    //Repeat the process until the user requests to exit the program.
-
     public static void main(String[] args) {
 
 
