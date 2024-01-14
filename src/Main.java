@@ -19,15 +19,15 @@ public class Main {
 
 
         int age = 0;
-        int nChargeableIncome;
-        int deductionOne;
-        int deductionTwo;
-        int deductionThree;
-        int deductionFour;
-        int deductionFive;
+        int nChargeableIncome = 0;
+        int deductionOne = 0;
+        int deductionTwo = 0;
+        int deductionThree = 0;
+        int deductionFour = 0;
+        int deductionFive = 0;
         int allowanceOne = 0;
         int allowanceThree = 0;
-        int allowanceFour;
+        int allowanceFour = 0;
 
         Scanner scanner = new Scanner(System.in);
 
@@ -140,14 +140,18 @@ public class Main {
                                 if (children >= 1 && children <= 9) {
                                     allowanceThree = children * 130000;
                                     break;
-                                } else {
+                                }
+                                else {
                                     System.out.println("Invalid input. Enter a number from 1-9.");
                                     children = scanner.nextInt();
                                 }
                             }
-                        } else if (answer.equals("no")) {
                             break;
-                        } else {
+                        }
+                        else if (answer.equals("no")) {
+                            break;
+                        }
+                        else {
                             System.out.println("Invalid input. Please answer Yes or No.");
                             answer = scanner.next();
                         }
@@ -233,12 +237,14 @@ public class Main {
                 } else if (150001 <= standardTax && standardTax <= 200000) {
                     taxPay = standardTax * 0.14;
                 }
-            } else {
+            }
+            else {
                 taxPay = (standardTax - 200000) * 0.17 + 16000;
             }
             System.out.println("You're tax payment is HKD" + taxPay + ".");
 
             System.out.println("Enter 'exit' to exit to code. Enter any other input to keep calculating your tax payment.");
+            scanner.nextLine();
             contOrEnd = scanner.nextLine();
         }
         System.out.println("Thanks for using Nathan's Hong Kong Tax Rate Calculator!");
